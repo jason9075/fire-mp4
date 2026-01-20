@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="popup.css">
     <style>
         body {
             width: 400px;
@@ -11,12 +11,42 @@
             padding: 10px;
             background-color: #f9f9f9;
         }
-        h3 {
-            margin-top: 0;
-            color: #333;
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             border-bottom: 1px solid #eee;
             padding-bottom: 10px;
+            margin-bottom: 10px;
         }
+
+        h3 {
+            margin: 0;
+            color: #333;
+        }
+
+        .settings-icon {
+            cursor: pointer;
+            font-size: 18px;
+            text-decoration: none;
+            color: #555;
+        }
+
+        .settings-icon:hover {
+            color: #000;
+        }
+
+        .tab-title {
+            font-size: 11px;
+            color: #666;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            margin-bottom: 8px;
+            font-style: italic;
+        }
+
         #list {
             list-style: none;
             padding: 0;
@@ -24,6 +54,7 @@
             max-height: 300px;
             overflow-y: auto;
         }
+
         .item {
             background: white;
             border: 1px solid #ddd;
@@ -35,18 +66,26 @@
             flex-direction: column;
             gap: 5px;
         }
+
         .url-text {
             font-size: 12px;
-            color: #555;
+            color: #333;
             max-height: 32px;
             overflow: hidden;
             text-overflow: ellipsis;
         }
+
+        .meta-info {
+            font-size: 11px;
+            color: #888;
+        }
+
         .actions {
             display: flex;
             gap: 5px;
             margin-top: 5px;
         }
+
         button {
             cursor: pointer;
             padding: 5px 10px;
@@ -54,13 +93,29 @@
             border: none;
             font-size: 12px;
         }
+
         .btn-download {
             background-color: #007bff;
             color: white;
         }
+
         .btn-download:hover {
             background-color: #0056b3;
         }
+
+        .btn-download-all {
+            width: 100%;
+            background-color: #28a745;
+            color: white;
+            padding: 8px;
+            margin-bottom: 10px;
+            display: none;
+        }
+
+        .btn-download-all:hover {
+            background-color: #218838;
+        }
+
         #empty-msg {
             text-align: center;
             color: #999;
@@ -68,6 +123,7 @@
             padding: 20px;
             display: none;
         }
+
         #clear-btn {
             width: 100%;
             padding: 8px;
@@ -77,17 +133,29 @@
             border-radius: 4px;
             cursor: pointer;
             margin-top: 10px;
+            display: none;
         }
+
         #clear-btn:hover {
             background-color: #c82333;
         }
     </style>
 </head>
+
 <body>
-    <h3>Detected MP4s</h3>
+    <div class="header">
+        <h3>Detected MP4s</h3>
+        <a href="#" id="settings-btn" class="settings-icon">⚙️</a>
+    </div>
+    <div id="tab-title" class="tab-title"></div>
+
+    <button id="download-all-btn" class="btn-download-all">Download All</button>
+
     <div id="empty-msg">No MP4s detected on this page.</div>
     <ul id="list"></ul>
+
     <button id="clear-btn">Clear List</button>
     <script src="popup.js"></script>
 </body>
+
 </html>
